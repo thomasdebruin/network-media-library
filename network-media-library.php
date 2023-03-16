@@ -414,7 +414,7 @@ class ACF_Value_Filter {
 	 *
 	 * @var mixed Field value.
 	 */
-	protected $value = null;
+	protected $value = [];
 
 	/**
 	 * Sets up the necessary action and filter callbacks.
@@ -466,7 +466,7 @@ class ACF_Value_Filter {
 		} else {
 			$image = $this->transform_acf_to_return_format( $field['return_format'], $value );
 		}
-		$this->value = $image;
+		$this->value[ $field['name'] ] = $image;
 		return $image;
 	}
 
@@ -480,7 +480,7 @@ class ACF_Value_Filter {
 	 * @return mixed The updated value.
 	 */
 	public function filter_acf_attachment_format_value( $value, $post_id, array $field ) {
-		return $this->value;
+		return $this->value[ $field['name'] ];
 	}
 }
 
